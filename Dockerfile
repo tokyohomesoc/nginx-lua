@@ -8,6 +8,8 @@ ARG TIMEZONE=Asia/Tokyo
 ARG LUAJIT_VERSION=2.0.5
 ## ngx_devel_kit
 ARG NGX_DEVEL_KIT=0.3.0
+## lua-nginx-module
+ARG LUA_NGNIX_VERSION=0.10.8
 ## nginx-ct
 ARG NGX_CT_VERSION=1.3.2
 ## headers-more-nginx-module
@@ -45,6 +47,7 @@ ARG NGX_CONFIG="\
         --with-http_v2_module \
         \
         --add-module=./ngx_devel_kit-${NGX_DEVEL_KIT} \
+        --add-module=./lua-nginx-module-${LUA_NGNIX_VERSION} \
         \
         --add-module=./ngx_aws_auth-${NGX_AWS_AUTH} \
         --add-module=./nginx-ct-${NGX_CT_VERSION} \
@@ -99,6 +102,13 @@ RUN \
         -o ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     && tar -zxC ./ -f ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     && rm ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
+    \
+    ## lua-nginx-module
+    # https://github.com/openresty/lua-nginx-module
+    && curl -fSL https://github.com/openresty/lua-nginx-module/archive/v${LUA_NGNIX_VERSION}.tar.gz \
+        -o lua-nginx-module-${LUA_NGNIX_VERSION}.tar.gz \
+    && tar -zxC ./ -f lua-nginx-module-${LUA_NGNIX_VERSION}.tar.gz \
+    && rm lua-nginx-module-${LUA_NGNIX_VERSION}.tar.gz \
     \
     ## ngx_aws_auth
     # https://github.com/anomalizer/ngx_aws_auth
