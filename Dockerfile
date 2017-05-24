@@ -87,6 +87,7 @@ RUN \
     && cd LuaJIT-${LUAJIT_VERSION} \
     && make PREFIX=/usr/local/luajit \
     && make install PREFIX=/usr/local/luajit \
+    && cd .. \
     \
     ## ngx_aws_auth
     # https://github.com/anomalizer/ngx_aws_auth
