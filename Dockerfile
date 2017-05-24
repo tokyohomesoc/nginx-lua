@@ -4,6 +4,8 @@ MAINTAINER HomeSOC Tokyo <github@homesoc.tokyo>
 
 # Environment variable
 ARG TIMEZONE=Asia/Tokyo
+## LuaJIT
+ARG LUAJIT_VERSION=2.0.5
 ## nginx-ct
 ARG NGX_CT_VERSION=1.3.2
 ## headers-more-nginx-module
@@ -75,6 +77,16 @@ RUN \
     && tar -zxC /usr/src -f nginx.tar.gz \
     && rm nginx.tar.gz \
     && cd /usr/src/nginx-$NGX_VERSION \
+    \
+    ## LuaJIT
+    # http://luajit.org/download.html
+    && curl -fSL http://luajit.org/download/LuaJIT-${LUAJIT_VERSION}.tar.gz \
+        -o LuaJIT-${LUAJIT_VERSION}.tar.gz \
+    && tar -zxC ./ -f LuaJIT-${LUAJIT_VERSION}.tar.gz \
+    && rm LuaJIT-${LUAJIT_VERSION}.tar.gz \
+    && cd cd LuaJIT-${LUAJIT_VERSION} \
+    && make PREFIX=/usr/local/luajit \
+    && make install PREFIX=/usr/local/luajit \
     \
     ## ngx_aws_auth
     # https://github.com/anomalizer/ngx_aws_auth
