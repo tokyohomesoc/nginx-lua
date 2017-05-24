@@ -6,6 +6,8 @@ MAINTAINER HomeSOC Tokyo <github@homesoc.tokyo>
 ARG TIMEZONE=Asia/Tokyo
 ## LuaJIT
 ARG LUAJIT_VERSION=2.0.5
+## ngx_devel_kit
+ARG NGX_DEVEL_KIT=0.3.0
 ## nginx-ct
 ARG NGX_CT_VERSION=1.3.2
 ## headers-more-nginx-module
@@ -41,6 +43,8 @@ ARG NGX_CONFIG="\
         --with-stream_ssl_module \
         --with-compat \
         --with-http_v2_module \
+        \
+        --add-module=./ngx_devel_kit-${NGX_DEVEL_KIT} \
         \
         --add-module=./ngx_aws_auth-${NGX_AWS_AUTH} \
         --add-module=./nginx-ct-${NGX_CT_VERSION} \
@@ -88,6 +92,13 @@ RUN \
     && make PREFIX=/usr/local/luajit \
     && make install PREFIX=/usr/local/luajit \
     && cd .. \
+    \
+    ## ngx_devel_kit
+    # https://github.com/simpl/ngx_devel_kit/tags
+    && curl -fSL https://github.com/simpl/ngx_devel_kit/archive/v${NGX_DEVEL_KIT}.tar.gz \
+        -o ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
+    && tar -zxC ./ -f ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
+    && rm ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     \
     ## ngx_aws_auth
     # https://github.com/anomalizer/ngx_aws_auth
