@@ -105,7 +105,7 @@ RUN \
     && rm ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     \
     && export LUAJIT_LIB=/usr/local/luajit/lib \
-    && export LUAJIT_INC=/usr/local/luajit/include/luajit-${NGX_DEVEL_KIT} \
+    && export LUAJIT_INC=/usr/local/luajit/include/luajit-${LUAJIT_VERSION} \
     \
     ## lua-nginx-module
     # https://github.com/openresty/lua-nginx-module
