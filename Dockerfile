@@ -45,7 +45,7 @@ ARG NGX_CONFIG="\
         --with-threads \
         --with-stream \
         --with-stream_ssl_module \
-        --with-compat \
+#        --with-compat \
         --with-http_v2_module \
         \
         --with-ld-opt="-Wl,-rpath,/usr/local/luajit/lib" \
