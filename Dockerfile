@@ -9,6 +9,8 @@ ARG LUAJIT_VERSION=2.0.5
 ## ngx_devel_kit
 ARG NGX_DEVEL_KIT=0.3.0
 ## lua-nginx-module
+ARG LUAJIT_LIB=/usr/local/luajit/lib
+ARG LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
 ARG LUA_NGNIX_VERSION=0.10.8
 ## nginx-ct
 ARG NGX_CT_VERSION=1.3.2
@@ -103,9 +105,6 @@ RUN \
         -o ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     && tar -zxC ./ -f ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
     && rm ngx_devel_kit-${NGX_DEVEL_KIT}.tar.gz \
-    \
-    && export LUAJIT_LIB=/usr/local/luajit/lib \
-    && export LUAJIT_INC=/usr/local/luajit/include/luajit-${LUAJIT_VERSION} \
     \
     ## lua-nginx-module
     # https://github.com/openresty/lua-nginx-module
