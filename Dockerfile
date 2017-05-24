@@ -46,8 +46,9 @@ ARG NGX_CONFIG="\
         --with-compat \
         --with-http_v2_module \
         \
-        --add-module=./ngx_devel_kit-${NGX_DEVEL_KIT} \
         --with-ld-opt="-Wl,-rpath,/usr/local/luajit/lib" \
+        --add-module=./ngx_devel_kit-${NGX_DEVEL_KIT} \
+        --add-module=./lua-nginx-module-${LUA_NGNIX_VERSION} \
         \
         --add-module=./ngx_aws_auth-${NGX_AWS_AUTH} \
         --add-module=./nginx-ct-${NGX_CT_VERSION} \
