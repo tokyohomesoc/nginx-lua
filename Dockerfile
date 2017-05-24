@@ -84,7 +84,7 @@ RUN \
         -o LuaJIT-${LUAJIT_VERSION}.tar.gz \
     && tar -zxC ./ -f LuaJIT-${LUAJIT_VERSION}.tar.gz \
     && rm LuaJIT-${LUAJIT_VERSION}.tar.gz \
-    && cd cd LuaJIT-${LUAJIT_VERSION} \
+    && cd LuaJIT-${LUAJIT_VERSION} \
     && make PREFIX=/usr/local/luajit \
     && make install PREFIX=/usr/local/luajit \
     \
